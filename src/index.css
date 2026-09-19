@@ -187,16 +187,16 @@
    with no per-project color choice needed —
    mirrors this file's own --foreground/--muted-foreground pairing,
    just derived from a background that isn't necessarily this site's:
-   - --project-muted-fg (README body copy and list items):
+   - --project-muted-fg (header labels, README body copy, list items):
      lightness pulled 0.444 below the background's own lightness. For
      the default white background this lands exactly on the 0.556
      lightness this site already used as its muted-foreground gray;
      for a tinted background it's a comparably darker shade of the
      SAME tint rather than a shade of gray.
-   - --project-fg (header labels, README headings, strong, code):
-     lightness pulled 0.855 below the background's — lands exactly on
-     this site's 0.145 foreground black for a white background; for a
-     tinted background, a comparably near-black shade of the same tint.
+   - --project-fg (README headings, strong, code): lightness pulled
+     0.855 below the background's — lands exactly on this site's 0.145
+     foreground black for a white background; for a tinted background,
+     a comparably near-black shade of the same tint.
    - both scale chroma 3x. For an achromatic background (chroma 0)
      that's still 0 — the neutral case is untouched — but for a
      colored background it pulls the hue clearly into view rather than
@@ -226,7 +226,7 @@
    specificity, breaking the hover state. */
 @layer components {
   .ph-label {
-    color: var(--project-fg, oklch(from var(--project-bg) calc(l - 0.855) calc(c * 3) h));
+    color: var(--project-muted-fg, oklch(from var(--project-bg) calc(l - 0.444) calc(c * 3) h));
   }
 
   @media (hover: hover) {
@@ -235,7 +235,7 @@
         --project-hover-fg,
         color-mix(
           in oklab,
-          var(--project-fg, oklch(from var(--project-bg) calc(l - 0.855) calc(c * 3) h)) 72%,
+          var(--project-muted-fg, oklch(from var(--project-bg) calc(l - 0.444) calc(c * 3) h)) 72%,
           black
         )
       );

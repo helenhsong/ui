@@ -70,10 +70,10 @@ this skill.
 - Never target `.ph-*`, the header element, or README descendants from project
   CSS. Do not pass a presentational `className` to `ProjectHeader`.
 - Keep the shared color roles consistent across every project: ProjectHeader
-  labels and README titles/headings use the exact same `--project-fg`; README
-  paragraph and list text uses the slightly lighter `--project-muted-fg`.
-  ProjectHeader labels darken on hover using `--project-hover-fg`, which the
-  package derives from `--project-fg` by default.
+  labels and README paragraph/list text use the softer `--project-muted-fg`;
+  README titles/headings use the stronger `--project-fg`. ProjectHeader labels
+  darken on hover using `--project-hover-fg`, which the package derives from
+  `--project-muted-fg` by default.
 - Give every project one site-wide `--project-bg` token and bridge the shared
   `--background` token to it on `html:root`. Use `var(--project-bg)` for the
   document and every project-owned content root so the color continues without
@@ -388,9 +388,9 @@ build/deployment status.
 - [ ] One `--project-bg` value colors `html`, `body`, and project content and is
       bridged to `--background`, so it reaches the fixed ProjectHeader without
       a seam.
-- [ ] ProjectHeader labels and README titles/headings share `--project-fg`;
-      README prose uses the lighter `--project-muted-fg`, and header labels
-      darken on hover via `--project-hover-fg`.
+- [ ] ProjectHeader labels and README prose share `--project-muted-fg`; README
+      titles/headings use `--project-fg`, and header labels darken on hover via
+      `--project-hover-fg`.
 - [ ] `@helenhsong/ui` includes the standard Cyworld-derived README
       fade-and-lift transition; the project does not duplicate it locally.
 - [ ] Project content and all of its styling live under a sibling project-owned
