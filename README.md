@@ -52,9 +52,9 @@ deploying to Pages.
 `ProjectHeader` owns its responsive layout: above 420px the header uses 32px
 horizontal and 24px vertical padding, while its README uses the homepage's
 30px content gutter; at 420px and below, both use the homepage's 20px content
-gutter. The component also reserves a stable desktop scrollbar gutter so
-opening a README or loading longer content cannot shift the header. Consumers
-must not reproduce or override these layout rules.
+gutter. The component does not reserve a scrollbar gutter, so short pages keep
+their full width and projects with custom scroll surfaces do not gain a second
+gutter. Consumers must not reproduce or override these layout rules.
 
 ## Developing in this repo
 

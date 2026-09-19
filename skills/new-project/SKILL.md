@@ -62,8 +62,8 @@ this skill.
 - Keep the package-owned responsive spacing: above 420px the header uses 32px
   horizontal and 24px vertical padding and the README uses the homepage's 30px
   content gutter; at 420px and below, both use the homepage's 20px content
-  gutter. `ProjectHeader` also reserves a stable scrollbar gutter above the
-  mobile breakpoint so neither surface shifts when scrolling appears.
+  gutter. `ProjectHeader` does not reserve a scrollbar gutter, so short pages
+  retain their full width and custom scroll surfaces do not stack gutters.
 - Never edit, replace, restyle, animate, or visually wrap the header or README
   panel from a project repository. Theme it only through the supported palette
   tokens described below.
@@ -149,8 +149,9 @@ Use native scrolling and a transparent track. Do not override this per
 component unless an area intentionally hides its native scrollbar for a
 custom-drawn scrollbar or a swipe-only carousel; those exceptions may retain
 `scrollbar-width: none` and `::-webkit-scrollbar { display: none; }`.
-Do not set `scrollbar-gutter` in a project: `ProjectHeader` owns the stable
-desktop gutter and the mobile opt-out for every project page.
+Do not set `scrollbar-gutter` in a project. Project pages should only show a
+native scrollbar when their actual scrolling surface needs one, without a
+permanent reserved strip at the viewport edge.
 
 ## 1. Scaffold the app
 
@@ -383,8 +384,8 @@ build/deployment status.
       uses only the supported project color tokens.
 - [ ] Shared chrome retains its package-owned spacing: 32px horizontal and
       24px vertical header padding above 420px, 20px horizontal padding on
-      mobile, matching README content gutters, and no project-owned
-      `scrollbar-gutter` override.
+      mobile, matching README content gutters, and no reserved or project-owned
+      `scrollbar-gutter`.
 - [ ] One `--project-bg` value colors `html`, `body`, and project content and is
       bridged to `--background`, so it reaches the fixed ProjectHeader without
       a seam.

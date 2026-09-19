@@ -167,20 +167,6 @@
   --project-bg: var(--color-background);
 }
 
-/* Project pages reserve the vertical scrollbar gutter before either route
-   needs it, so the fixed header and centered README never shift when content
-   starts or stops scrolling. Mobile browsers use overlay scrollbars and share
-   the homepage's edge-to-edge 20px content gutter, so no reservation is
-   needed at that breakpoint. */
-:root:has(.ph-project-header) {
-  scrollbar-gutter: stable;
-}
-
-@media (max-width: 420px) {
-  :root:has(.ph-project-header) {
-    scrollbar-gutter: auto;
-  }
-}
 /* Two text colors computed from --project-bg rather than fixed grays,
    so the header-bar labels and README panel are always "in family"
    with whatever the page puts behind them and read clearly on it,
