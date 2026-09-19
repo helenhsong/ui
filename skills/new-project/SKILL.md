@@ -59,12 +59,31 @@ this skill.
 - Use a package version that includes the standard Cyworld-derived README
   transition. `ProjectHeader` owns the veil, fade, closing lift, timing, and
   reduced-motion behavior; project repositories must not recreate them.
-- Never edit, replace, restyle, theme, animate, or visually wrap the header or
-  README panel from a project repository.
+- Keep the package-owned responsive spacing: above 420px the header uses 32px
+  horizontal and 24px vertical padding and the README uses the homepage's 30px
+  content gutter; at 420px and below, both use the homepage's 20px content
+  gutter. `ProjectHeader` also reserves a stable scrollbar gutter above the
+  mobile breakpoint so neither surface shifts when scrolling appears.
+- Never edit, replace, restyle, animate, or visually wrap the header or README
+  panel from a project repository. Theme it only through the supported palette
+  tokens described below.
 - Never target `.ph-*`, the header element, or README descendants from project
   CSS. Do not pass a presentational `className` to `ProjectHeader`.
-- Never set `--project-bg`, `--project-fg`, `--project-muted-fg`, or other
-  shared-header presentation tokens from a project.
+- Keep the shared color roles consistent across every project: ProjectHeader
+  labels and README titles/headings use the exact same `--project-fg`; README
+  paragraph and list text uses the slightly lighter `--project-muted-fg`.
+  ProjectHeader labels darken on hover using `--project-hover-fg`, which the
+  package derives from `--project-fg` by default.
+- Give every project one site-wide `--project-bg` token and bridge the shared
+  `--background` token to it on `html:root`. Use `var(--project-bg)` for the
+  document and every project-owned content root so the color continues without
+  a seam behind the fixed ProjectHeader and README veil. Do not target or
+  restyle the header to achieve this.
+- Set `--project-fg` and `--project-muted-fg` only when the colors derived from
+  `--project-bg` need explicit accessible overrides; the muted value must remain
+  lighter than the foreground value. Set `--project-hover-fg` only when the
+  derived hover is unsuitable, and keep it visibly darker than
+  `--project-fg`.
 - Do not add global typography, color, reset, box-model, or control selectors
   that cascade into the header or README. The neutral `body { margin: 0; }`
   baseline is allowed.
@@ -74,13 +93,45 @@ this skill.
 - A project may react to `html[data-ph-open]` only to hide or disable its own
   content while the README is open. It must not use that state to modify the
   shared header, README, backdrop, typography, layout, or transition.
-- Project backgrounds, fonts, loaders, and motion begin below the header and
-  remain inside the project-owned content root. They never paint behind or
-  alter the shared chrome.
+- Project fonts, loaders, and motion begin below the header and remain inside
+  the project-owned content root. A background may continue behind the shared
+  chrome only through the supported palette tokens; it must not alter the
+  shared component's structure or motion.
 
 The package owns the header font and the README typography. A project's design
 brief applies only to project-owned content unless the user explicitly asks to
 change the shared UI package itself in a separate task.
+
+### Site-wide background
+
+Every scaffold must define its background once at the site shell, even when the
+initial page is plain white. The shared package stylesheet may be emitted after
+the project's stylesheet, so use `html:root` to keep the project's values in
+control without adding selectors for shared UI:
+
+```css
+html:root {
+  --project-bg: #fff;
+  --background: var(--project-bg);
+  background: var(--project-bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--project-bg);
+}
+
+.project-page {
+  background: var(--project-bg);
+}
+```
+
+Change only `--project-bg` when a project adopts a different solid background.
+For a project-owned image, shader, or canvas background, keep that visual below
+the header and choose the matching solid `--project-bg` fallback for the shared
+header and README. Do not pass a presentational `className` to `ProjectHeader`
+or make it transparent from the project repository.
 
 ### Scrollbars
 
@@ -98,6 +149,8 @@ Use native scrolling and a transparent track. Do not override this per
 component unless an area intentionally hides its native scrollbar for a
 custom-drawn scrollbar or a swipe-only carousel; those exceptions may retain
 `scrollbar-width: none` and `::-webkit-scrollbar { display: none; }`.
+Do not set `scrollbar-gutter` in a project: `ProjectHeader` owns the stable
+desktop gutter and the mobile opt-out for every project page.
 
 ## 1. Scaffold the app
 
@@ -140,6 +193,26 @@ real static child page, so direct visits and refreshes work on GitHub Pages.
 GitHub Pages canonicalizes the directory URL with a trailing slash. Use the
 same `<title><Project Name></title>` as the root page; opening the README must
 not append "README" or otherwise change the browser title.
+
+### Favicons
+
+Unless the user supplies project-specific favicons, reference the canonical
+light and dark assets from `helenhsong.github.io` directly in both `index.html`
+and `readme/index.html`. Direct references make every project inherit future
+favicon updates automatically while following the visitor's color-scheme
+preference:
+
+```html
+<link rel="icon" type="image/png" href="https://helenhsong.com/favicon.png" media="(prefers-color-scheme: light)" />
+<link rel="icon" type="image/png" href="https://helenhsong.com/favicon-dark.png" media="(prefers-color-scheme: dark)" />
+```
+
+Keep these URLs absolute so Vite does not rewrite them to the project's base
+path. The URLs are served by the custom domain, while the files remain owned by
+the `helenhsong.github.io` portfolio repository. Do not copy the default files
+into each project: that repository is the single source of truth. A project may override either or both favicons
+by updating the corresponding links in both HTML entries; do not modify the
+portfolio repository's source files for a project-specific override.
 
 ## 4. Render the blank page
 
@@ -303,8 +376,21 @@ build/deployment status.
       refreshes, and browser back/forward navigation all work.
 - [ ] The browser title uses proper title capitalization and stays exactly the
       same on both routes.
-- [ ] No project code modifies shared-header or README styling, presentation
-      tokens, layout, typography, backdrop, or transitions.
+- [ ] Both HTML entries reference the canonical light/dark portfolio favicon
+      URLs unless the project intentionally overrides them.
+- [ ] No project code targets shared-header or README selectors or modifies
+      their layout, typography, backdrop, or transitions; any custom palette
+      uses only the supported project color tokens.
+- [ ] Shared chrome retains its package-owned spacing: 32px horizontal and
+      24px vertical header padding above 420px, 20px horizontal padding on
+      mobile, matching README content gutters, and no project-owned
+      `scrollbar-gutter` override.
+- [ ] One `--project-bg` value colors `html`, `body`, and project content and is
+      bridged to `--background`, so it reaches the fixed ProjectHeader without
+      a seam.
+- [ ] ProjectHeader labels and README titles/headings share `--project-fg`;
+      README prose uses the lighter `--project-muted-fg`, and header labels
+      darken on hover via `--project-hover-fg`.
 - [ ] `@helenhsong/ui` includes the standard Cyworld-derived README
       fade-and-lift transition; the project does not duplicate it locally.
 - [ ] Project content and all of its styling live under a sibling project-owned

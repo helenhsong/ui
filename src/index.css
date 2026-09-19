@@ -166,22 +166,37 @@
 :root {
   --project-bg: var(--color-background);
 }
+
+/* Project pages reserve the vertical scrollbar gutter before either route
+   needs it, so the fixed header and centered README never shift when content
+   starts or stops scrolling. Mobile browsers use overlay scrollbars and share
+   the homepage's edge-to-edge 20px content gutter, so no reservation is
+   needed at that breakpoint. */
+:root:has(.ph-project-header) {
+  scrollbar-gutter: stable;
+}
+
+@media (max-width: 420px) {
+  :root:has(.ph-project-header) {
+    scrollbar-gutter: auto;
+  }
+}
 /* Two text colors computed from --project-bg rather than fixed grays,
-   so both the header-bar labels and the README panel's copy are
-   always "in family" with whatever the page puts behind them and
-   read clearly on it, with no per-project color choice needed —
+   so the header-bar labels and README panel are always "in family"
+   with whatever the page puts behind them and read clearly on it,
+   with no per-project color choice needed —
    mirrors this file's own --foreground/--muted-foreground pairing,
    just derived from a background that isn't necessarily this site's:
-   - --project-muted-fg (header labels, README body copy, list items):
+   - --project-muted-fg (README body copy and list items):
      lightness pulled 0.444 below the background's own lightness. For
      the default white background this lands exactly on the 0.556
      lightness this site already used as its muted-foreground gray;
      for a tinted background it's a comparably darker shade of the
      SAME tint rather than a shade of gray.
-   - --project-fg (README headings, strong, code): lightness pulled
-     0.855 below the background's — lands exactly on this site's 0.145
-     foreground black for a white background; for a tinted background,
-     a comparably near-black shade of the same tint.
+   - --project-fg (header labels, README headings, strong, code):
+     lightness pulled 0.855 below the background's — lands exactly on
+     this site's 0.145 foreground black for a white background; for a
+     tinted background, a comparably near-black shade of the same tint.
    - both scale chroma 3x. For an achromatic background (chroma 0)
      that's still 0 — the neutral case is untouched — but for a
      colored background it pulls the hue clearly into view rather than
@@ -211,7 +226,20 @@
    specificity, breaking the hover state. */
 @layer components {
   .ph-label {
-    color: var(--project-muted-fg, oklch(from var(--project-bg) calc(l - 0.444) calc(c * 3) h));
+    color: var(--project-fg, oklch(from var(--project-bg) calc(l - 0.855) calc(c * 3) h));
+  }
+
+  @media (hover: hover) {
+    .ph-label:hover {
+      color: var(
+        --project-hover-fg,
+        color-mix(
+          in oklab,
+          var(--project-fg, oklch(from var(--project-bg) calc(l - 0.855) calc(c * 3) h)) 72%,
+          black
+        )
+      );
+    }
   }
 }
 

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { renderReadmeHtml } from "./readme-markdown";
 
 const labelClassName =
-  "ph-label w-fit cursor-pointer text-xs leading-[150%] font-['iAWriterMonoV-Regular','iA_Writer_Mono_V',system-ui,sans-serif] transition-colors hover:text-foreground";
+  "ph-label w-fit cursor-pointer text-xs leading-[150%] font-['iAWriterMonoV-Regular','iA_Writer_Mono_V',system-ui,sans-serif] transition-colors focus:outline-none focus-visible:outline-none";
 
 function isReadmePath(pathname: string) {
   return /\/readme\/?$/.test(pathname);
@@ -178,7 +178,7 @@ export function ProjectHeader({
       <div className="h-[66px]">
         <header
           className={cn(
-            "fixed inset-x-0 top-0 z-10 flex items-center justify-between bg-background px-8 py-6",
+            "ph-project-header fixed inset-x-0 top-0 z-10 flex items-center justify-between bg-background px-5 py-6 min-[421px]:px-8",
             className
           )}
         >
@@ -206,7 +206,7 @@ export function ProjectHeader({
           />
           <div
             className={cn(
-              "ph-readme mx-auto max-w-125 px-7.5 py-18",
+              "ph-readme mx-auto max-w-125 px-5 py-18 min-[421px]:px-7.5",
               readmeClosing && "is-closing"
             )}
             dangerouslySetInnerHTML={{ __html: readmeHtml }}
