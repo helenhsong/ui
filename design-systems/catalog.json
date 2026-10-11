@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "systems": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "The current neutral shadcn/Base UI system used by @helenhsong/ui.",
+      "manifest": "./default/system.json",
+      "status": "active"
+    }
+  ]
+}
+

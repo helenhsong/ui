@@ -1,0 +1,22 @@
+{
+  "id": "default",
+  "name": "Default",
+  "description": "Neutral product UI built from vendored shadcn components and Base UI behavior.",
+  "status": "active",
+  "package": "@helenhsong/ui",
+  "entrypoints": {
+    "components": "@helenhsong/ui",
+    "styles": "@helenhsong/ui/style.css"
+  },
+  "source": {
+    "tokens": "../../src/index.css",
+    "components": "../../src/components/ui",
+    "utilities": "../../src/lib"
+  },
+  "sharedChrome": {
+    "projectHeader": "../../src/components/ProjectHeader",
+    "usage": "helen-build only"
+  },
+  "guidelines": "./guidelines.md"
+}
+

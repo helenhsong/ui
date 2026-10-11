@@ -40,14 +40,26 @@ and depend on the tag instead of the branch:
 npm install github:helenhsong/ui#v0.1.0
 ```
 
+## Design systems
+
+[`design-systems/catalog.json`](design-systems/catalog.json) is the discovery
+point for the visual systems available in this repository. Each catalog entry
+links to a manifest and guidelines while the reusable implementation remains
+in `src/`.
+
+The current `default` system describes the existing neutral shadcn/Base UI
+component library. Add another system when it has a real visual language or
+component need; do not duplicate shared behavior just to create a new visual
+variant.
+
 ## Setting up a project page
 
-Every repo served at `helenhsong.github.io/<project>` starts from the
+Every repo served at `helenhsong.com/<project>/` starts from the
 same template: a blank page with [`ProjectHeader`](src/components/ProjectHeader/ProjectHeader.tsx)
 at the top (home link + a link to the project's README child page). Use the
-[`$new-project` skill](skills/new-project/SKILL.md)
-for the full template and automated workflow, from scaffolding through
-deploying to Pages.
+globally installed `$helen-build` skill for the full template and automated
+workflow, from scaffolding through deploying to Pages. The skill's source lives
+in Helen's private `ai-skills` repository.
 
 `ProjectHeader` owns its responsive layout: above 420px the header uses 32px
 horizontal and 24px vertical padding, while its README uses the homepage's
