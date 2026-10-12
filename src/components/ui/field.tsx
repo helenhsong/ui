@@ -50,9 +50,9 @@ const fieldVariants = cva("data-[invalid=true]:text-destructive gap-2 group/fiel
     orientation: {
       // Stacked fields: a smaller label (text-xs) sitting 6px above its control.
       vertical:
-        "flex-col gap-1.5 *:w-full *:data-[slot=field-label]:text-xs [&>.sr-only]:w-auto",
+        "flex-col gap-1.5 *:w-full *:data-[slot=field-label]:text-[11px] *:data-[slot=field-label]:leading-4 [&>.sr-only]:w-auto",
       horizontal:
-        "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+        "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto *:data-[slot=field-label]:font-normal has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
       responsive:
         "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
     },
@@ -123,7 +123,7 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="field-description"
       className={cn(
-        "text-muted-foreground text-left text-sm [[data-variant=legend]+&]:-mt-1.5 leading-normal font-normal group-has-data-horizontal/field:text-balance",
+        "text-muted-foreground text-left text-[11px] [[data-variant=legend]+&]:-mt-1.5 leading-4 font-normal group-has-data-horizontal/field:text-balance",
         "last:mt-0 nth-last-2:-mt-1",
         "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
         className
@@ -203,7 +203,7 @@ function FieldError({
     <div
       role="alert"
       data-slot="field-error"
-      className={cn("text-destructive text-sm font-normal", className)}
+      className={cn("text-destructive text-[11px] leading-4 font-normal", className)}
       {...props}
     >
       {content}
