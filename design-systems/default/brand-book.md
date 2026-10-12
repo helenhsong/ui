@@ -46,20 +46,29 @@ Transitions use Tailwind's default 150 ms `cubic-bezier(0.4, 0, 0.2, 1)`. Button
 
 ## Iconography
 
-The shadcn config names **Lucide** as the icon library, but the package ships no icons. Put an inline `<svg>` inside a Button; it is sized to 16px automatically (12–14px in the small sizes) and inherits the label colour. There is no logo in the repository: set the name `helenhsong.com` in plain type.
+Icons are **Lucide** (`lucide-react`), the shadcn config's icon library; components draw their own chevrons, checks and close marks from it. Put a Lucide icon or inline `<svg>` inside a Button; it is sized to 16px automatically (12–14px in the small sizes) and inherits the label colour. There is no logo in the repository: set the name `helenhsong.com` in plain type.
 
 ## Components
 
-- **Button**: every clickable action. Six variants, eight sizes.
+Every shadcn/ui Base UI component is vendored in the `base-nova` style and exported from `@helenhsong/ui`. Use them before building your own.
+
+- **Actions:** Button (six variants, eight sizes), ButtonGroup, Toggle, ToggleGroup.
+- **Forms:** Input, Textarea, Checkbox, RadioGroup, Switch, Slider, Select, NativeSelect, Combobox, Field, Label, InputGroup, InputOTP, Calendar.
+- **Overlays:** Dialog, AlertDialog, Sheet, Drawer, Popover, HoverCard, Tooltip, DropdownMenu, ContextMenu, Menubar, Command.
+- **Navigation:** Breadcrumb, NavigationMenu, Pagination, Tabs, Sidebar.
+- **Data display:** Table, Card, Badge, Avatar, Chart, Carousel, Item, Kbd, Accordion, Collapsible, Separator, AspectRatio, ScrollArea, Resizable.
+- **Feedback:** Alert, Toast, Sonner (exported as `SonnerToaster`), Progress, Spinner, Skeleton, Empty.
+- **Chat:** Attachment, Bubble, Message, MessageScroller, Questionnaire, Marker.
+- **Utilities:** Direction (`DirectionProvider` for right-to-left layouts) and the `useIsMobile` hook.
 - **ProjectHeader**: shared portfolio chrome for pages at `helenhsong.com/<project>/`, reserved for the `helen-build` workflow. Do not include it in standalone prototypes.
 
 Consumers install `github:helenhsong/ui`, import from `@helenhsong/ui` and load `@helenhsong/ui/style.css` once. Tailwind is compiled away, so consuming apps need no Tailwind setup.
 
 ## Not synced
 
-From `helenhsong/ui` at `main@6b9a30b`:
+From `helenhsong/ui` at `main@ce564a3`:
 
 - **Skipped:** `--project-bg` (a per-project override hook, not a palette entry), the computed `--project-fg` / `--project-muted-fg` (relative colour, not tokens), and Tailwind's `@theme inline` aliases (`--color-*`), which only point at the colours above.
 - **Converted:** the radius scale's `calc()` values are stored as their results, so editing `radius` here does not move the other steps.
-- **Not bundled:** Inter (load it yourself). No logos or icons exist in the repository.
-- **Components:** both are built from the repository's own code into one bundle; the previews are live. `buttonVariants` and `cn` are exported in the bundle but get no card.
+- **Not bundled:** Inter (load it yourself). No logos exist in the repository.
+- **Components:** all are built from the repository's own code into one bundle, and every preview is live. Previews other than Button, ProjectHeader and the hand-written Sonner, Direction and MessageScroller demos run shadcn's own docs demos. Their stylesheet also carries the demos' layout classes. Photos in the AspectRatio and Attachment demos load from the web and may not show here.
