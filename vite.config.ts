@@ -32,7 +32,10 @@ export default defineConfig({
           fileName: "index",
         },
         rollupOptions: {
-          external: ["react", "react-dom", "react/jsx-runtime"],
+          // use-sync-external-store ships CommonJS that require()s react; bundled
+          // into this ES module that require() fails at runtime, so it stays
+          // external (and is a dependency) like react itself.
+          external: ["react", "react-dom", "react/jsx-runtime", /^use-sync-external-store(\/.*)?$/],
           output: {
             // Name the single compiled stylesheet style.css; leave every other
             // asset with its default hashed name so they don't collide.
