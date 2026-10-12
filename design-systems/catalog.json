@@ -6,7 +6,8 @@
       "name": "Default",
       "description": "The current neutral shadcn/Base UI system used by @helenhsong/ui.",
       "manifest": "./default/system.json",
-      "status": "active"
+      "status": "active",
+      "artifact": "https://claude.ai/code/artifact/3ff003a5-6041-48fa-b191-6af800328ae2"
     }
   ]
 }

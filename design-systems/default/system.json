@@ -17,6 +17,13 @@
     "projectHeader": "../../src/components/ProjectHeader",
     "usage": "helen-build only"
   },
-  "guidelines": "./guidelines.md"
+  "guidelines": "./guidelines.md",
+  "tokens": "./tokens.json",
+  "brandBook": "./brand-book.md",
+  "components": {
+    "Button": "./components/Button.md",
+    "ProjectHeader": "./components/ProjectHeader.md"
+  },
+  "artifact": "https://claude.ai/code/artifact/3ff003a5-6041-48fa-b191-6af800328ae2"
 }
 

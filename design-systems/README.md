@@ -4,8 +4,11 @@ This directory is the discovery layer for the design systems in
 `@helenhsong/ui`.
 
 Start with `catalog.json`, then read the selected system's `system.json` and
-`guidelines.md`. Manifests point to the current component, token, and utility
-sources without forcing the library into separate packages.
+`guidelines.md`. A system may also carry `tokens.json` (its colour, type,
+spacing and radius tokens), a `brand-book.md`, per-component guides under
+`components/`, and an `artifact` link to its live design system in Claude.
+Manifests point to the current component, token, and utility sources without
+forcing the library into separate packages.
 
 Add a new system only when it has a real visual language or component need.
 Keep reusable behavior in the shared component and utility paths; keep a
