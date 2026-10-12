@@ -68,7 +68,7 @@ Consumers install `github:helenhsong/ui`, import from `@helenhsong/ui` and load 
 
 ## Not synced
 
-From `helenhsong/ui` at `main@abee899`, reskinned with the CDS Components and CDS Styles (Variables) Figma files in their Dense mode:
+From `helenhsong/ui` at `main@670d2aa`, reskinned with the CDS Components and CDS Styles (Variables) Figma files in their Dense mode:
 
 - **Skipped:** `--project-bg` (a per-project override hook, not a palette entry), the computed `--project-fg` / `--project-muted-fg` (relative colour, not tokens), and Tailwind's `@theme inline` aliases (`--color-*`), which only point at the colours above.
 - **Converted:** the radius scale's `calc()` values are stored as their results, so editing `radius` here does not move the other steps.

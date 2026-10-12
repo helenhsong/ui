@@ -14,7 +14,7 @@ Displays a button, or a component that looks like a button, built on Base UI's B
 ## What the consumer provides
 
 - `children`: the label, and optionally an inline `<svg>`. Icons are sized for you (16px; 12px at `xs`, 14px at `sm`). Mark a leading or trailing icon with `data-icon="inline-start"` or `data-icon="inline-end"` to tighten the padding on that side.
-- `variant` and `size` (defaults: `default`, `default`). Sizes `xs` 28px, `sm` 32px, `default` 36px, `lg` 44px tall (default and lg are CDS Dense's compact and default buttons); `icon-xs` 28, `icon-sm` 32, `icon` 36 and `icon-lg` 40px are square for icon-only buttons, which need an `aria-label`. Labels are 14/20 medium (`cds-headline`); `xs` uses 11/16.
+- `variant` and `size` (defaults: `default`, `default`). Sizes `xs` 28px, `sm` 32px, `default` 36px, `lg` 44px tall (default and lg are CDS Dense's compact and default buttons); `icon-xs` 28, `icon-sm` 32, `icon` 36 and `icon-lg` 40px are square for icon-only buttons, which need an `aria-label`. Labels are 14/20 medium (`base-headline`); `xs` uses 11/16.
 - `className` merges over the variant classes with `cn()`; any native button attribute passes through.
 
 ## Do and don't
