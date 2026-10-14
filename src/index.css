@@ -12,11 +12,11 @@
 @custom-variant dark (&:is(.dark *));
 
 /* iA Writer Mono — used by ProjectHeader's header bar — IS bundled,
-   unlike Inter below: it's SIL OFL licensed (github.com/iaolo/iA-Fonts)
+   unlike Geist below: it's SIL OFL licensed (github.com/iaolo/iA-Fonts)
    so redistributing it is fine, and only the one static weight
    ProjectHeader actually uses is needed (not a whole family across
    every weight/italic), so the base64 inlining cost is ~50KB gzip
-   rather than Inter's ~150KB. License text lives at
+   rather than a whole family's ~150KB. License text lives at
    ./assets/fonts/LICENSE.md. */
 @font-face {
   font-family: "iA Writer Mono V";
@@ -26,14 +26,15 @@
   font-display: swap;
 }
 
-/* Inter isn't bundled — self-hosting it inlined every font file as base64
-   into this stylesheet (~150KB gzip), because Tailwind's CSS bundler
-   inlines @font-face url()s regardless of Vite's asset settings. Load it
-   yourself (Google Fonts, next/font, etc.) for the intended look; this
-   falls back to the system sans stack otherwise. */
+/* Geist and Geist Mono (the shadcn docs fonts) aren't bundled — self-hosting
+   inlined every font file as base64 into this stylesheet (~150KB gzip),
+   because Tailwind's CSS bundler inlines @font-face url()s regardless of
+   Vite's asset settings. Load them yourself (Google Fonts, next/font, etc.)
+   for the intended look; these fall back to the system stacks otherwise. */
 @theme inline {
     --font-heading: var(--font-sans);
-    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     --color-divider: var(--divider);
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
@@ -238,7 +239,7 @@
 .ph-readme {
   position: relative;
   z-index: 5;
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
   font-size: 14px;
   line-height: 160%;
   color: var(--project-muted-fg, oklch(from var(--project-bg) calc(l - 0.444) calc(c * 3) h));
