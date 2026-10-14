@@ -32,7 +32,12 @@ export default defineConfig({
           fileName: "index",
         },
         rollupOptions: {
-          external: ["react", "react-dom", "react/jsx-runtime"],
+          external: [
+            "react",
+            "react-dom",
+            "react/jsx-runtime",
+            /^@base-ui\/react(?:\/.*)?$/,
+          ],
           output: {
             // Name the single compiled stylesheet style.css; leave every other
             // asset with its default hashed name so they don't collide.

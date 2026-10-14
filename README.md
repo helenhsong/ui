@@ -3,8 +3,11 @@
 Shared React component library, built here and consumed directly by other
 repos as a git dependency — no npm registry, no publish step.
 
-Built on [shadcn/ui](https://ui.shadcn.com): components get vendored in via
-the shadcn CLI, then tweaked and built on top of directly in this repo.
+Built on [shadcn/ui](https://ui.shadcn.com). Registry components are vendored
+with their current `base-nova` defaults and exported from this package. Keep
+their component styles, Tailwind spacing scale, and shadcn radius mapping
+unchanged; layer product- or base-specific styling outside the default
+primitives.
 
 ## Using it in another repo
 
@@ -47,10 +50,31 @@ point for the visual systems available in this repository. Each catalog entry
 links to a manifest and guidelines while the reusable implementation remains
 in `src/`.
 
-The current `default` system describes the existing neutral shadcn/Base UI
-component library. Add another system when it has a real visual language or
-component need; do not duplicate shared behavior just to create a new visual
-variant.
+The current `default` system describes the neutral shadcn/Base UI component
+library. Its source of truth is the official shadcn `base-nova` registry,
+including the default `0.625rem` base radius and generated radius scale. Add
+another system when it has a real visual language or component need; do not
+override the default system's primitive styles to express a separate system.
+
+All current registry primitives are exported from `@helenhsong/ui`, together
+with the docs-only compositions that are not registry items: a reusable Data
+Table, the official Data Table demo, all eight Date Picker examples, and a
+`Typeset` wrapper backed by shadcn's full Typeset stylesheet. The ten examples
+from shadcn's Area Charts collection are also public exports. The complete
+27-block catalog is vendored under [`examples/blocks`](examples/blocks): blocks
+are copyable application patterns and intentionally are not package exports.
+
+### Component coverage
+
+- `src/components/ui/` contains the full current `base-nova` registry set plus
+  the reusable Data Table composition recommended by the docs.
+- `src/components/date-picker-*.tsx` contains Basic, Demo, Date of Birth,
+  Input, Natural Language, Range, RTL, and Time variants.
+- `src/typeset.css` is the complete shadcn Typeset stylesheet; `Typeset`
+  provides its standard `.typeset` wrapper as a package export.
+- `src/components/chart-area-*.tsx` contains all ten Area Chart examples.
+- `examples/blocks/` contains all 27 public block registry items with their
+  source files and registry metadata.
 
 ## Setting up a project page
 
@@ -81,9 +105,17 @@ npm run dev        # opens src/dev — a playground for previewing components
 npm run ui:add -- <name>   # e.g. npm run ui:add -- card
 ```
 
-vendors a shadcn primitive into `src/components/ui/`. Tweak it there, then
-re-export it from [src/index.ts](src/index.ts) — anything not exported
-there isn't part of the public package. Preview it via `src/dev/App.tsx`.
+vendors a shadcn primitive into `src/components/ui/`. Re-export it from
+[src/index.ts](src/index.ts) — anything not exported there isn't part of the
+public package — and preview it via `src/dev/App.tsx`. Keep the generated
+default styling intact; product and alternate-system customization belongs in
+the consuming application or a separate design-system layer.
+
+To refresh the full primitive set from the official registry:
+
+```bash
+npm run ui:add -- --all --overwrite -y
+```
 
 For something fully custom (not a shadcn primitive), build it under
 `src/components/<Name>/`, styled with Tailwind utilities and the shared

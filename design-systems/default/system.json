@@ -1,7 +1,7 @@
 {
   "id": "default",
   "name": "Default",
-  "description": "Neutral product UI built from vendored shadcn components and Base UI behavior.",
+  "description": "Current base-nova shadcn defaults, including its component styles, spacing scale, radius mapping, and Base UI behavior.",
   "status": "active",
   "package": "@helenhsong/ui",
   "entrypoints": {
@@ -11,6 +11,8 @@
   "source": {
     "tokens": "../../src/index.css",
     "components": "../../src/components/ui",
+    "compositions": "../../src/components",
+    "typeset": "../../src/typeset.css",
     "utilities": "../../src/lib"
   },
   "sharedChrome": {

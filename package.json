@@ -38,11 +38,21 @@
     "react-dom": "^18.3.0 || ^19.0.0"
   },
   "dependencies": {
+    "@base-ui/react": "^1.8.0",
+    "@shadcn/react": "^0.3.1",
+    "@tanstack/react-table": "^9.3.1",
+    "chrono-node": "^2.10.3",
+    "cmdk": "^1.1.1",
+    "date-fns": "^4.4.0",
     "dompurify": "^3.4.15",
-    "marked": "^18.0.12"
+    "embla-carousel-react": "^8.6.0",
+    "input-otp": "^1.5.0",
+    "marked": "^18.0.12",
+    "react-day-picker": "^10.0.2",
+    "react-resizable-panels": "^4.14.5",
+    "recharts": "^3.8.0"
   },
   "devDependencies": {
-    "@base-ui/react": "^1.8.0",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.18",
