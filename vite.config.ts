@@ -37,6 +37,7 @@ export default defineConfig({
             "react-dom",
             "react/jsx-runtime",
             /^@base-ui\/react(?:\/.*)?$/,
+            /^use-sync-external-store(?:\/.*)?$/,
           ],
           output: {
             // Name the single compiled stylesheet style.css; leave every other

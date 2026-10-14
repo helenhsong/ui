@@ -19,6 +19,10 @@
     "projectHeader": "../../src/components/ProjectHeader",
     "usage": "helen-build only"
   },
-  "guidelines": "./guidelines.md"
+  "guidelines": "./guidelines.md",
+  "components": {
+    "ProjectHeader": "./components/ProjectHeader.md"
+  },
+  "artifact": "https://claude.ai/code/artifact/3ff003a5-6041-48fa-b191-6af800328ae2"
 }
 

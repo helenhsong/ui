@@ -1,18 +1,16 @@
 import type { CSSProperties } from "react";
 import { ProjectHeader } from "@/components/ProjectHeader/ProjectHeader";
 
-const sampleReadme = `# cyworld
+const sampleReadme = `# Project title
 
-A small React app, revived from the dead.
-
-## Setup
+Description of the project here
 
 \`\`\`bash
 npm install
 npm run dev
 \`\`\`
 
-Deployed at [helenhsong.github.io/cyworld](https://helenhsong.github.io/cyworld).
+Deployed on GitHub Pages.
 `;
 
 export function ProjectHeaderExample() {

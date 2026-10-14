@@ -56,6 +56,11 @@ including the default `0.625rem` base radius and generated radius scale. Add
 another system when it has a real visual language or component need; do not
 override the default system's primitive styles to express a separate system.
 
+The former custom styles are preserved as the separate `base` reference system
+under [`design-systems/base`](design-systems/base), with its CSS tokens in
+[`src/base-styles.css`](src/base-styles.css). That stylesheet is intentionally
+not imported into the package's default `style.css`.
+
 All current registry primitives are exported from `@helenhsong/ui`, together
 with the docs-only compositions that are not registry items: a reusable Data
 Table, the official Data Table demo, all eight Date Picker examples, and a

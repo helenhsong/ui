@@ -56,6 +56,8 @@ export * from "./components/ui/sheet";
 export * from "./components/ui/sidebar";
 export * from "./components/ui/skeleton";
 export * from "./components/ui/slider";
+// sonner and toast both export `Toaster`; sonner's is re-exported as `SonnerToaster`.
+export { Toaster as SonnerToaster } from "./components/ui/sonner";
 export * from "./components/ui/spinner";
 export * from "./components/ui/switch";
 export * from "./components/ui/table";
@@ -89,4 +91,5 @@ export type { DatePickerLanguage, DatePickerRtlProps } from "./components/date-p
 export { DatePickerTime } from "./components/date-picker-time";
 export { Typeset } from "./components/typeset";
 export type { TypesetProps } from "./components/typeset";
+export * from "./hooks/use-mobile";
 export * from "./components/ProjectHeader/ProjectHeader";

@@ -1,0 +1,16 @@
+{
+  "id": "base",
+  "name": "Base",
+  "description": "Preserved Base tokens and component guidance, isolated from the active shadcn defaults.",
+  "status": "reference",
+  "source": {
+    "styles": "../../src/base-styles.css"
+  },
+  "guidelines": "./guidelines.md",
+  "tokens": "./tokens.json",
+  "brandBook": "./brand-book.md",
+  "components": {
+    "Button": "./components/Button.md",
+    "Input": "./components/Input.md"
+  }
+}
